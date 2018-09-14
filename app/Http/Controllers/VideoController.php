@@ -47,7 +47,13 @@ class VideoController extends Controller
           $video->imagem = $imagem;
           $video->texto = $request->texto;
           $video->fk_usuario = Auth::User()->id;
-          $video->save();          
+          $video->save();       
+
+          $videos = Video::JOIN('users','users.id','=','videos.fk_usuario')
+            ->SELECT('videos.id','users.name as nome','videos.texto','videos.mp4','videos.imagem')
+            ->GET();
+
+        return view('videos.index',compact('videos')); 
     }
 
     /**
@@ -79,9 +85,24 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        return $request->texto;
+          $mp4 = $request->file('mp4')->store('upload');
+          $imagem = $request->file('imagem')->store('upload');
+
+          $video = Video::find($request->id);
+          $video->mp4 = $mp4;
+          $video->imagem = $imagem;
+          $video->texto = $request->texto;
+          $video->fk_usuario = Auth::User()->id;
+          $video->save();       
+
+          $videos = Video::JOIN('users','users.id','=','videos.fk_usuario')
+            ->SELECT('videos.id','users.name as nome','videos.texto','videos.mp4','videos.imagem')
+            ->GET();
+
+        return view('videos.index',compact('videos')); 
     }
 
     /**
@@ -90,8 +111,9 @@ class VideoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(request $request)
     {
-        //
+        $video = Video::find($request->id);
+        $video->destroy();
     }
 }

@@ -9,21 +9,22 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-   <link href="{{ asset('css/bootstrap-custom.css') }}" rel="stylesheet">
-   <link href="{{ asset('css/jquery-te.css') }}" >
+
+   
 
     <!-- Scripts -->
 
-    <script src="{{ asset('js/jquery-2.0.0.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/jquery-te.js') }}"></script>
+    <script src="{{ url('js/jquery-2.0.0.min.js') }}"></script>
+    <script src="{{ url('js/app.js') }}"></script>
+    <script src="{{ url('js/jquery-te.js') }}"></script>
     
     
 
         <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+    <link href="{{ url('css/app.css') }}" rel="stylesheet">
+   <link href="{{ url('/css/jquery-te.css') }}" rel="stylesheet">
     <!-- Styles -->
     
 </head>

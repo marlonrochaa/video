@@ -18,6 +18,16 @@ Route::get('/videos', function () {
 
 
 Route::post('/store', 'VideoController@store');
+Route::post('/update', 'VideoController@update');
 Route::get('/videos', 'VideoController@index');
 Route::get('/', 'HomeController@index')->name('home');
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+Auth::routes();
+
+
